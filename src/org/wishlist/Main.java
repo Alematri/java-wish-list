@@ -1,31 +1,42 @@
 package org.wishlist;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        // ArrayList per memorizzare i regali
+        Scanner scanner = new Scanner(System.in);
         ArrayList<String> wishList = new ArrayList<>();
 
-        Scanner scanner = new Scanner(System.in);
-
-        // Ciclo per chiedere l'inserimento all'utente
         boolean continueAdding = true;
         while (continueAdding) {
-            System.out.print("Inserisci un regalo: ");
+            System.out.print("Inserisci il nome del regalo: ");
             String gift = scanner.nextLine();
+
+            // Aggiungi all'ArrayList
             wishList.add(gift);
 
-            System.out.println("Lunghezza della lista dei desideri: " + wishList.size());
+            // Mostra la lunghezza della lista
+            System.out.println("Numero totale di regali: " + wishList.size());
 
-            // Chiedere all'utente se terminare
-            System.out.print("Vuoi aggiungere un altro regalo? (sì/no): ");
-            String choice = scanner.nextLine().toLowerCase();
-            continueAdding = choice.equals("sì") || choice.equals("si");
+            // Chiedi all'utente se vuole continuare
+            System.out.print("Vuoi continuare ad aggiungere regali? (Sì/No): ");
+            String input = scanner.nextLine();
+            if (!input.equalsIgnoreCase("Sì")) {
+                continueAdding = false;
+            }
+        }
+
+        // Ordina la lista dei desideri in ordine alfabetico
+        Collections.sort(wishList);
+
+        // Stampa
+        System.out.println("Lista dei desideri:");
+        for (String gift : wishList) {
+            System.out.println(gift);
         }
 
         scanner.close();
-
     }
 }
