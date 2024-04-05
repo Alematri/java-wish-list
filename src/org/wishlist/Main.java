@@ -7,17 +7,19 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        ArrayList<String> wishList = new ArrayList<>();
+        ArrayList<Wish> wishList = new ArrayList<>();
 
         boolean continueAdding = true;
         while (continueAdding) {
+            // Input utente
             System.out.print("Inserisci il nome del regalo: ");
-            String gift = scanner.nextLine();
+            String giftName = scanner.nextLine();
+            Wish wish = new Wish(giftName);
 
-            // Aggiungi all'ArrayList
-            wishList.add(gift);
+            // Aggiungo all'ArrayList
+            wishList.add(wish);
 
-            // Mostra la lunghezza della lista
+            // Mostra la lunghezza dell'array'
             System.out.println("Numero totale di regali: " + wishList.size());
 
             // Chiedi all'utente se vuole continuare
@@ -28,13 +30,13 @@ public class Main {
             }
         }
 
-        // Ordina la lista dei desideri in ordine alfabetico
+        // Ordina la lista
         Collections.sort(wishList);
 
-        // Stampa
+        // Stampare
         System.out.println("Lista dei desideri:");
-        for (String gift : wishList) {
-            System.out.println(gift);
+        for (Wish wish : wishList) {
+            System.out.println(wish.getName());
         }
 
         scanner.close();
